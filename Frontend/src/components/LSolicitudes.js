@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-
+import Button from '@material-ui/core/Button';
 
 
 
@@ -48,8 +48,7 @@ class LSolicitudes extends React.Component {
             )
     }
     acceptClick(key) {
-        const formData = new FormData();
-        formData.append('dbAprobado', true);
+       
         return fetch('http://localhost:5000/api/solicitud/'+key, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
@@ -59,9 +58,38 @@ class LSolicitudes extends React.Component {
         
     }
 
+    generateClick(key) {
+        const nombres   = ['Juan Mendoza','Sofia Perez','Carloz Diaz','Eduardo Martinez']
+        const nrodocs   = ['71122566','67341233','55778909','76534222']
+        const deudas    = [5000,300,30000,14000,1900]
+        const sentinel  = ['regular','bueno','malo','regular','bueno']
+        const indicador = [5,8,2,7,9]
+        const montos    = [10000,9000,20000,13000,6000]
+        var randomN1    = Math.floor(Math.random() * 4); 
+        var randomN2    = Math.floor(Math.random() * 5); 
+        
+
+        return fetch('http://localhost:5000/api/clientes', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                            "dcNroDoc": nrodocs[randomN1],
+                            "dcNombre": nombres[randomN1],
+                            "dnDeudaSBS": deudas[randomN2],
+                            "dcPuntSentinel": sentinel[randomN2],
+                            "dnIndicador":indicador[randomN2],
+                            "fSolicitud": [
+                                { "dnMonto": montos[randomN2], "dbAprobado": null}
+                            ]
+                        })
+        }).then(alert('Generado satifactoriamente'))
+        .then(window.location.reload(false))
+        
+    }
+
     deleteClick(key) {
-        const formData = new FormData();
-        formData.append('dbAprobado', false);
+        
+        
 
         return fetch('http://localhost:5000/api/solicitud/'+key, {
             method: 'PUT',
@@ -78,44 +106,48 @@ class LSolicitudes extends React.Component {
         } else if (!isLoaded) {
             return <div>Cargando..</div>;
         } else {
-            return (
-            <List >
-                {items.map(item => (
-                    <ListItem key={item.fSolicitud[0].pnCodSol}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <AssignmentIcon color="primary"/>
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary={item.fSolicitud[0].dnMonto +" Dolares"}
-                            secondary={
-                                <React.Fragment>
-                                    <Typography
-                                    component="span"
-                                    variant="body2"
-                                    color="textPrimary"
-                                    >
-                                    {item.dcNroDoc} - {item.dcNombre}
-                                    </Typography>
-                                {' — Deuda SBS :'+item.dnDeudaSBS+'— Puntuacion Sentinel: '+item.dcPuntSentinel+' - Indicador :'+item.dnIndicador}
-                                </React.Fragment>
-                            }
-                        />
-                        <ListItemSecondaryAction>
-                            <IconButton edge="end" aria-label="delete" onClick={()=>this.acceptClick(item.fSolicitud[0].pnCodSol) } >
-                                <AssignmentTurnedInIcon />
-                            </IconButton>
-                            
-                            <IconButton edge="end" aria-label="delete" onClick={()=> this.deleteClick(item.fSolicitud[0].pnCodSol) } >
-                                <DeleteForeverIcon color="secondary"/>
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                ))}
-            </List>
-                
-            );
+            if( items.length < 1){
+                return <Button style={{marginTop: '10px'}} variant="contained" color="primary" onClick={this.generateClick} >  Generar data  </Button>
+            }
+            else{
+                return (
+                <List >
+                    {items.map(item => (
+                        <ListItem key={item.fSolicitud[0].pnCodSol}>
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <AssignmentIcon color="primary"/>
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={item.fSolicitud[0].dnMonto +" Dolares"}
+                                secondary={
+                                    <React.Fragment>
+                                        <Typography
+                                        component="span"
+                                        variant="body2"
+                                        color="textPrimary"
+                                        >
+                                        {item.dcNroDoc} - {item.dcNombre}
+                                        </Typography>
+                                    {' — Deuda SBS :'+item.dnDeudaSBS+'— Puntuacion Sentinel: '+item.dcPuntSentinel+' - Indicador :'+item.dnIndicador}
+                                    </React.Fragment>
+                                }
+                            />
+                            <ListItemSecondaryAction>
+                                <IconButton edge="end" aria-label="delete" onClick={()=>this.acceptClick(item.fSolicitud[0].pnCodSol) } >
+                                    <AssignmentTurnedInIcon />
+                                </IconButton>
+                                
+                                <IconButton edge="end" aria-label="delete" onClick={()=> this.deleteClick(item.fSolicitud[0].pnCodSol) } >
+                                    <DeleteForeverIcon color="secondary"/>
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    ))}
+                </List>
+                );
+            }
         }
     }
 }
