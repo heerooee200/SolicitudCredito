@@ -1,4 +1,4 @@
-**Api**
+## **Api**
 - En el explorador de archivos dirigirse a *Api/api/config*
 - Abrir el archivo *default.py*
 - En la 6 linea de codigo se encuentra la variable *SQLALCHEMY_DATABASE_URI* la cual debe ser remplazado con las credenciales de su base de datos usando el siguiente formato 'postgresql://{user}:{pass}@{servername o por defecto localhost}:{puerto}/{nombre de la base de datos}'
@@ -11,7 +11,7 @@
 - Ejecutar el comando *flask db migrate -m "Initial_db"*
 - Ejecutar el comando *flask db upgrade*
 - Ejecutar el comando *flask run*
-**Frontend**
+## **Frontend**
 - Abrir un CMD y ubicarse en la carpeta Frontend
 - Ejecutar el comando *npm install*
 - Ejecutar el comando *npm start*
