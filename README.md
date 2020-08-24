@@ -12,6 +12,9 @@ Cuando reciba una solicitud de aprobación de un crédito personal por un monto 
 Entonces el sistema me debe mostrar una bandeja con las solicitudes de crédito que tengo por aprobar. Por cada solicitud el sistema me debe permitir analizar el monto total de la deuda registrada por la SBS para este cliente, además me debe mostrar la puntuación del cliente como deudor a través de la central de riesgo sentinel (para este caso, este indicador puede ser bueno, regular o malo) y finalmente me debe mostrar el indicador de nuestro algoritmo de inteligencia artificial que apoya mi decisión (este indicador muestra un puntaje del 1 al 10 siendo 10 un crédito seguro y 1 un crédito a pérdida). Finalmente, debe permitirme con un botón aprobar o denegar la solicitud de crédito. <br/>
 
 **Consideraciones:** tanto el monto total de deuda registrada en la SBS, el indicador de sentinel y el algoritmo de inteligencia artificial son ficticios. Coloca cualquier valor que le dé sentido a la historia cuando construyas el caso. <br/>
+
+# CONFIGURACION
+
 ## **Api**
 - En el explorador de archivos dirigirse a *Api/api/config*
 - Abrir el archivo *default.py*
