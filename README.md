@@ -1,35 +1,36 @@
-# Reto React/Flask <br/>
-**Contexto:** María es una profesional de las finanzas. Actualmente trabaja como líder del área de créditos y cobranzas de una prestigiosa financiera del país. María y su equipo trabajan hasta tarde pues muchas de sus labores se realizan de manera manual apoyándose en hojas de cálculo. Nuestro equipo ha sido contratado para construir una solución que le brinde agilidad a María y su equipo para que puedan aprobar más créditos, en menor tiempo pero con un nivel de calidad muy superior al actual. <br/>
+# React/Flask Challenge <br/>
+**Context:** María is a finance professional. She currently works as the head of the credit and collections department at a prestigious financial institution in the country. María and her team often work late because many of their tasks are performed manually using spreadsheets. Our team has been hired to build a solution that provides María and her team with the agility to approve more loans in less time while maintaining a much higher level of quality than the current process. <br/>
 
-**Historia de usuario:** Aprobar créditos en base a indicadores<br/>
+**User Story:** Approve loans based on indicators <br/>
 
-Como María quiero poder aprobar créditos basando mi decisión en indicadores de tal manera que la calidad de las operaciones aprobadas sea la mejor y no tengamos una cartera morosa grande. <br/>
+As María, I want to be able to approve loans based on indicators so that the quality of approved operations is the best and we do not end up with a large delinquent portfolio. <br/>
 
-**Criterios** <br/>
+**Acceptance Criteria** <br/>
 
-Dado que mi perfil dentro del sistema me permite aprobar créditos
-Cuando reciba una solicitud de aprobación de un crédito personal por un monto menor o igual a 50 mil dólares y desee saber si debo o no aprobar dicha solicitud el sistema debe permitir analizar los indicadores de este cliente. <br/>
-Entonces el sistema me debe mostrar una bandeja con las solicitudes de crédito que tengo por aprobar. Por cada solicitud el sistema me debe permitir analizar el monto total de la deuda registrada por la SBS para este cliente, además me debe mostrar la puntuación del cliente como deudor a través de la central de riesgo sentinel (para este caso, este indicador puede ser bueno, regular o malo) y finalmente me debe mostrar el indicador de nuestro algoritmo de inteligencia artificial que apoya mi decisión (este indicador muestra un puntaje del 1 al 10 siendo 10 un crédito seguro y 1 un crédito a pérdida). Finalmente, debe permitirme con un botón aprobar o denegar la solicitud de crédito. <br/>
+Given that my profile in the system allows me to approve loans,
+When I receive a request to approve a personal loan for an amount less than or equal to 50 thousand dollars and I want to know whether to approve or deny the request, the system must allow me to analyze the client's indicators. <br/>
+Then, the system must show me a dashboard with the loan requests pending approval. For each request, the system must allow me to analyze the total amount of debt registered by the SBS (Superintendency of Banking, Insurance, and AFP) for this client. Additionally, it must show me the client's credit score through the Sentinel risk center (for this case, this indicator can be good, fair, or poor). Finally, it must show me the indicator from our artificial intelligence algorithm that supports my decision (this indicator shows a score from 1 to 10, where 10 is a safe loan and 1 is a loss). Lastly, it must allow me to approve or deny the loan request with a button. <br/>
 
-**Consideraciones:** tanto el monto total de deuda registrada en la SBS, el indicador de sentinel y el algoritmo de inteligencia artificial son ficticios. Coloca cualquier valor que le dé sentido a la historia cuando construyas el caso. <br/>
+**Considerations:** Both the total debt amount registered in the SBS, the Sentinel indicator, and the artificial intelligence algorithm are fictional. Use any values that make sense for the story when building the case. <br/>
 
-# CONFIGURACION
+# SETUP
 
-## **Api**
-- En el explorador de archivos dirigirse a *Api/api/config*
-- Abrir el archivo *default.py*
-- En la 6 linea de codigo se encuentra la variable *SQLALCHEMY_DATABASE_URI* la cual debe ser remplazado con las credenciales de su base de datos usando el siguiente formato 'postgresql://{user}:{pass}@{servername o por defecto localhost}:{puerto}/{nombre de la base de datos}'
-- Abrir un CMD y ubicarse en la carpeta *Api/api*
-- Ejecutar el comando *pip install virtualenv*
-- Ejecutar el comando *virtualenv .*
-- Ejecutar el comando *Scripts\activate*
-- Ejecutar el comando *pip install -r requirements.txt*
-- Ejecutar el comando *flask db init*
-- Ejecutar el comando *flask db migrate -m "Initial_db"*
-- Ejecutar el comando *flask db upgrade*
-- Ejecutar el comando *flask run*
+## **API**
+- In the file explorer, navigate to *Api/api/config*.
+- Open the file *default.py*.
+- On the 6th line of code, you will find the variable *SQLALCHEMY_DATABASE_URI*, which must be replaced with your database credentials using the following format: `'postgresql://{user}:{pass}@{servername or default localhost}:{port}/{database name}'`.
+- Open a CMD and navigate to the *Api/api* folder.
+- Run the command *pip install virtualenv*.
+- Run the command *virtualenv .*.
+- Run the command *Scripts\activate*.
+- Run the command *pip install -r requirements.txt*.
+- Run the command *flask db init*.
+- Run the command *flask db migrate -m "Initial_db"*.
+- Run the command *flask db upgrade*.
+- Run the command *flask run*.
+
 ## **Frontend**
-- Abrir un CMD y ubicarse en la carpeta Frontend
-- Ejecutar el comando *npm install*
-- Ejecutar el comando *npm start*
-- Dirigir se en el navegador a *http://localhost:3000/*
+- Open a CMD and navigate to the *Frontend* folder.
+- Run the command *npm install*.
+- Run the command *npm start*.
+- Open your browser and go to *http://localhost:3000/*.
